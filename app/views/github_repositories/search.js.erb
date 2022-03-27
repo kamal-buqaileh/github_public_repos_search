@@ -1,0 +1,13 @@
+var results_div = document.getElementById('results')
+
+if(<%= @error.present?%>) {
+  results_div.innerHTML = '<h4 style="color: red;"> internal server error, please try again later </h4>'
+} else {
+  var repositories = <%=@repositories_hash.to_json.html_safe%>
+  results_div.innerHTML = '<h3>total number of repositories found: <%= @total_number_of_repositories%></h3> <ul></ul>'
+  var ul = results_div.lastElementChild
+
+  for (const element of repositories) {
+    ul.innerHTML += '<li><a href="' + element['repository_url']+ '">' + element['repository_name'] + '</a> </li>'
+  }
+}

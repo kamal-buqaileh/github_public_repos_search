@@ -1,0 +1,16 @@
+<%= form_for :github_search, url: search_github_repositories_path, method: :get, remote: true do |form| %>
+  <h5>1- maximam number of items per page is 100<h5>
+  <h5>2- all fields are required<h5>
+  <%= form.label :search_terms, "search:" %>
+  <%= form.text_field :search_terms, required: true %>
+
+  <%= form.label :page, "Page:" %>
+  <%= form.number_field :page, value: 1, required: true%>
+
+  <%= form.label :per_page, "Per page:" %>
+  <%= form.number_field :per_page, value: 20, max: 100, min: 0, required: true%>
+
+  <%= form.submit "Search" %>
+<% end %>
+
+<div id='results'></div>
